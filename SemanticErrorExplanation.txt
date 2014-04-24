@@ -1,0 +1,7 @@
+1-In input and output parameters in Function definition, size of String and Matrix is taken to be maximum possible so as to define offset.
+2-Matrix and String offset is defined only when it encounters an initialisation statement.
+Exception is when Matrix and String are in Function CAll statement, in which case they are initialised to the maximum value
+3- If a function call is invalid
+4- If LHS of a matrix is not initialized, then consistency of RHS is not even checked.
+5- If RHS of Arithmetic expression is not declared, it gives type mismatch error also.
+6- Check predictive parser table for arithmetic expression
