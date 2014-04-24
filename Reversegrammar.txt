@@ -1,0 +1,90 @@
+0:mainFunction 46:MAIN 47:SQO 48:SQC 27:stmtsAndFunctionDefs 53:END 49:SEMICOLON
+27:stmtsAndFunctionDefs 28:stmtOrFunctionDef 29:A
+29:A 27:stmtsAndFunctionDefs
+29:A 84:EPSILON
+28:stmtOrFunctionDef 30:stmt
+28:stmtOrFunctionDef 1:functionDef
+30:stmt 31:declarationStmt
+30:stmt 32:assignmentStmt_type1
+30:stmt 33:assignmentStmt_type2
+30:stmt 2:ifStmt
+30:stmt 26:ioStmt
+30:stmt 3:funCallStmt
+1:functionDef 50:FUNCTION 47:SQO 34:parameter_list 48:SQC 51:ASSIGNOP 52:FUNID 47:SQO 34:parameter_list 48:SQC 27:stmtsAndFunctionDefs 53:END 49:SEMICOLON
+34:parameter_list 4:type 54:ID 5:remainingList
+4:type 55:INT
+4:type 56:REAL
+4:type 57:STRING
+4:type 58:MATRIX
+5:remainingList 59:COMMA 34:parameter_list
+5:remainingList 84:EPSILON
+31:declarationStmt 4:type 6:var_list 49:SEMICOLON
+6:var_list 54:ID 7:more_ids
+7:more_ids 59:COMMA 6:var_list
+7:more_ids 84:EPSILON
+32:assignmentStmt_type1 8:leftHandSide_singleVar 51:ASSIGNOP 35:rightHandSide_type1 49:SEMICOLON
+33:assignmentStmt_type2 9:leftHandSide_listVar 51:ASSIGNOP 36:rightHandSide_type2 49:SEMICOLON
+8:leftHandSide_singleVar 54:ID
+9:leftHandSide_listVar 47:SQO 6:var_list 48:SQC
+35:rightHandSide_type1 37:arithmeticExpression
+35:rightHandSide_type1 10:sizeExpression
+35:rightHandSide_type1 3:funCallStmt
+36:rightHandSide_type2 10:sizeExpression
+36:rightHandSide_type2 3:funCallStmt
+10:sizeExpression 60:SIZE 54:ID
+2:ifStmt 61:IF 62:OP 25:booleanExpression 63:CL 30:stmt 38:otherStmts 11:B
+11:B 64:ELSE 30:stmt 38:otherStmts 65:ENDIF 49:SEMICOLON
+11:B 65:ENDIF 49:SEMICOLON
+38:otherStmts 30:stmt 38:otherStmts
+38:otherStmts 84:EPSILON
+26:ioStmt 12:C 62:OP 54:ID 63:CL 49:SEMICOLON
+12:C 66:PRINT
+12:C 67:READ
+3:funCallStmt 52:FUNID 62:OP 39:inputParameterList 63:CL
+39:inputParameterList 13:var 14:listVar
+39:inputParameterList 84:EPSILON
+14:listVar 59:COMMA 39:inputParameterList
+14:listVar 84:EPSILON
+37:arithmeticExpression 40:arithmeticTerm 41:D
+41:D 15:operator_lowPrecedence 37:arithmeticExpression
+41:D 84:EPSILON
+40:arithmeticTerm 42:factor 43:E
+43:E 16:operator_highPrecdence 40:arithmeticTerm
+43:E 84:EPSILON
+42:factor 62:OP 37:arithmeticExpression 63:CL
+42:factor 13:var
+15:operator_lowPrecedence 68:PLUS
+15:operator_lowPrecedence 69:MINUS
+16:operator_highPrecdence 70:MUL
+16:operator_highPrecdence 71:DIV
+25:booleanExpression 62:OP 25:booleanExpression 63:CL 17:logicalOp 62:OP 25:booleanExpression 63:CL
+25:booleanExpression 18:constrainedVars 19:relationalOp 18:constrainedVars
+18:constrainedVars 54:ID
+18:constrainedVars 72:NUM
+18:constrainedVars 73:RNUM
+13:var 54:ID 20:matrixElement
+13:var 72:NUM
+13:var 73:RNUM
+13:var 74:STR
+13:var 21:matrix
+21:matrix 47:SQO 44:rows 48:SQC
+44:rows 22:row 23:F
+23:F 49:SEMICOLON 44:rows
+23:F 84:EPSILON
+22:row 72:NUM 45:G
+45:G 24:remainingColElements
+45:G 84:EPSILON
+24:remainingColElements 59:COMMA 72:NUM 24:remainingColElements
+24:remainingColElements 84:EPSILON
+20:matrixElement 47:SQO 72:NUM 59:COMMA 72:NUM 48:SQC
+20:matrixElement 84:EPSILON
+17:logicalOp 75:AND
+17:logicalOp 76:OR
+19:relationalOp 77:LT
+19:relationalOp 78:LE
+19:relationalOp 79:EQ
+19:relationalOp 80:GT
+19:relationalOp 81:GE
+19:relationalOp 82:NE
+25:booleanExpression 83:NOT 62:OP 25:booleanExpression 63:CL
+63:CL

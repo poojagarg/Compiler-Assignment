@@ -1,0 +1,18 @@
+15:operator_lowPrecedence 68:PLUS
+15:operator_lowPrecedence 69:MINUS
+16:operator_highPrecdence 70:MUL
+16:operator_highPrecdence 71:DIV
+25:booleanExpression 62:OP 25:booleanExpression 63:CL 17:logicalOp 62:OP 25:booleanExpression 63:CL
+25:booleanExpression 18:constrainedVars 19:relationalOp 18:constrainedVars
+25:booleanExpression 83:NOT 62:OP 25:booleanExpression 63:CL
+
+
+
+
+
+
+
+
+
+
+

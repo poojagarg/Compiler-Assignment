@@ -1,0 +1,20 @@
+_main[]
+	str1="yuhu";
+	string str2;
+	matrix m;
+	#int a;
+	m = [2,3,4,5 ; 1,6,7,4 ; 10,3,4];
+	str1 = "eradicate";
+	blankSTR = "  ";
+	str2 = "plagiarism";
+	function [string s]= _concatenate[string a, string a2]
+		str1 = a + a2;
+		string ccSubmission;
+		ccSubmission = _concatenate(str1, blankSTR);
+	end;
+	string a;
+	int b;
+	a=_concatenate(a,b);
+end;
+
+

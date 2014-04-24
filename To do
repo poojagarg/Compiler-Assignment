@@ -1,0 +1,4 @@
+1- Function Def me, input arguments are already initialised.
+(In symbol table entry, keep initialised=1)
+2-Function call mei, matrix size is not known, handle it.
+3- In string initialization, matrix error is also coming! check why.

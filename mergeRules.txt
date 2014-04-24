@@ -1,0 +1,89 @@
+0  46 47 48 27 53	<0> -> MAIN SQO SQC <stmtsAndFunctionDefs> END
+27  28 29	<stmtsAndFuntionDefs>-> <stmtOrFunctionDef> <A>
+29   27	<A> -> <stmtsAndFuntionDefs>
+29  84	<A> -> ep
+28  30	<stmtOrFunctionDef>-> <stmt>
+28  1	<stmtOrFunctionDef>-> 1
+30  31	<stmt>-> <declarationStmt>
+30  32	<stmt>-> <assignmentStmt_41>
+30  33	<stmt>-> <assignmentStmt_42>
+30  2	<stmt>-> 2
+30  26	<stmt>-> <ioStmt>
+30  3 49	<stmt>-> 3
+1  50 47 34 48 51 52 47 34 48 27 53 49	1 -> FUNCTION SQO <parameter_list> SQC ASSIGNOP FUNID SQO <parameter_list> SQC <stmtsAndFunctionDefs> END SEMICOLON
+34  4 54 5	<parameter_list> -> <4> ID <remainingList>
+4  55	<parameter_list> -> ep
+4  56	<remainingList> -> COMMA <4> ID <parameter_list>
+4  57	<remainingList> -> ep
+4  58	<4>-> INT
+5  59 34	<4>-> REAL
+5  84	<4>-> STRING
+31  4 6 49	<4>-> MATRIX
+6  54 7	<declarationStmt>-> <4> <var_list> SEMICOLON
+7  59 6	<var_list>-> ID <more_ids>
+7  84	<more_ids> -> COMMA <var_list>
+32  8 51 35 49	<more_ids> -> ep
+33  9 51 36 49	<assignmentStmt_41>-> <leftHandSide_singleVar> ASSIGNOP <rightHandSide_41> SEMICOLON
+8  54	<assignmentStmt_42>-> <leftHandSide_listVar> ASSIGNOP <rightHandSide_42> SEMICOLON
+9  47 6 48	<leftHandSide_singleVar> -> ID
+35  37	<leftHandSide_listVar> -> SQO <var_list> SQC
+35  10	<rightHandSide_41> -> <arithmeticExpression>
+35  3	<rightHandSide_41> -> <sizeExpression>
+36  10	<rightHandSide_41> -> 3
+36  3	<rightHandSide_42> -> <sizeExpression>
+10  60 54	<rightHandSide_42> -> 3
+2  61 62 25 63 30 38 11	<sizeExpression> -> SIZE ID 
+11  64 30 38 65 49	2 -> IF OP <booleanExpression> CL <stmt><otherStmts> <B>
+11   65 49	<B> -> ELSE <stmt><otherStmts> ENDIF SEMICOLON 
+38 30 38	<B> ->  ENDIF SEMICOLON
+38 84	<otherStmts>-> <stmt><otherStmts>
+26 12 62 54 63 49	<otherStmts>-> ep
+12  66	<ioStmt>-> PRINT OP ID CL SEMICOLON
+12  67	<ioStmt>-> READ OP ID CL SEMICOLON
+3 52 62 39 63	3-> FUNID OP <inputParameterList> CL
+39  13 14	<inputParameterList> -> <var> <listVar>
+39  84	<inputParameterList> -> ep
+14  59 39	<listVar> -> COMMA <inputParameterList>
+14  84	<listVar> -> ep
+37 40 41	<arithmeticExpression>-> <arithmeticTerm> <D>
+41  15 37	<D> -> <operator_lowPrecedence> <arithmeticExpression>
+41  84	<D> -> ep
+40 42 43	<arithmeticTerm>-> <factor> <E>
+43  16 40	<E> -> <operator_highPrecedence> <arithmeticTerm>
+43  84	<E> -> ep
+42  62 37 63	<factor> -> OP <arithmeticExpression> CL
+42  13	<factor> -> <var>
+15  68	<operator_lowPrecedence> -> PLUS
+15  69	<operator_lowPrecedence> -> MINUS
+16  70	<operator_highPrecedence> -> MUL
+16  71	<operator_highPrecedence> -> DIV
+25 62 25 63 17 62 25 63	<booleanExpression>-> OP <booleanExpression> CL <logicalOp> OP <booleanExpression> CL
+25 18 19 18	<booleanExpression>-> <constrainedVars> <relationalOp> <constrainedVars>
+18  54	<constrainedVars> -> ID
+ 18 72	<constrainedVars> ->NUM
+18  73	<constrainedVars> -> RNUM
+13 54	<var>-> ID <H>
+13 72	<var>-> NUM
+13 73	<var>-> RNUM
+13 20	<var>-> STR
+13 74	<var>-> <matrix>
+13 21	<H>-> SQO NUM COMMA NUM SQC
+2147 44 48	<H>-> ep
+44  22 23	<matrix>->SQO <rows> SQC
+23  49 44	<rows> -> <row> <F>
+23  84	<F> -> SEMICOLON <rows>
+22  72 45	<F> -> ep
+45  24	<row> -> NUM <remainingColElements>
+45  84	<remainingColElements> -> COMMA NUM <remainingColElements>
+24  59 72 24	<remainingColElements> -> ep
+24  84	<logicalOp>-> AND
+2054 47 72 59 72 48	<logicalOp>-> OR
+17 75	<relationalOp>-> LT
+17 76 	<relationalOp>-> LE
+19 77	<relationalOp>-> EQ
+19 78	<relationalOp>-> GT
+19 79	<relationalOp>-> GE
+19 80	<relationalOp>-> NE
+19 81	<booleanExpression>-> NOT OP <booleanExpression> CL
+19 82	
+25 83 62 25 63	

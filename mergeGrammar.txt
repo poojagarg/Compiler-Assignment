@@ -1,0 +1,90 @@
+<mainFunction> -> MAIN SQO SQC <stmtsAndFunctionDefs> END	mainFunction MAIN SQO SQC stmtsAndFunctionDefs END
+<stmtsAndFuntionDefs>-> <stmtOrFunctionDef> <A>	stmtsAndFunctionDefs stmtOrFunctionDef A
+<A> -> <stmtsAndFuntionDefs>	A stmtsAndFunctionDefs
+<A> -> ep	A EPSILON
+<stmtOrFunctionDef>-> <stmt>	stmtOrFunctionDef stmt
+<stmtOrFunctionDef>-> <functionDef>	stmtOrFunctionDef functionDef
+<stmt>-> <declarationStmt>	stmt declarationStmt
+<stmt>-> <assignmentStmt_type1>	stmt assignmentStmt_type1
+<stmt>-> <assignmentStmt_type2>	stmt assignmentStmt_type2
+<stmt>-> <ifStmt>	stmt ifStmt
+<stmt>-> <ioStmt>	stmt ioStmt
+<stmt>-> <funCallStmt>	stmt funCallStmt SEMICOLON
+<functionDef> -> FUNCTION SQO <parameter_list> SQC ASSIGNOP FUNID SQO <parameter_list> SQC <stmtsAndFunctionDefs> END SEMICOLON	functionDef FUNCTION SQO parameter_list SQC ASSIGNOP FUNID SQO parameter_list SQC stmtsAndFunctionDefs END SEMICOLON
+<parameter_list> -> <type> ID <remainingList>	parameter_list type ID remainingList
+<parameter_list> -> ep	type INT
+<remainingList> -> COMMA <type> ID <parameter_list>	type REAL
+<remainingList> -> ep	type STRING
+<type>-> INT	type MATRIX
+<type>-> REAL	remainingList COMMA parameter_list
+<type>-> STRING	remainingList EPSILON
+<type>-> MATRIX	declarationStmt type var_list SEMICOLON
+<declarationStmt>-> <type> <var_list> SEMICOLON	var_list ID more_ids
+<var_list>-> ID <more_ids>	more_ids COMMA var_list
+<more_ids> -> COMMA <var_list>	more_ids EPSILON
+<more_ids> -> ep	assignmentStmt_type1 leftHandSide_singleVar ASSIGNOP rightHandSide_type1 SEMICOLON
+<assignmentStmt_type1>-> <leftHandSide_singleVar> ASSIGNOP <rightHandSide_type1> SEMICOLON	assignmentStmt_type2 leftHandSide_listVar ASSIGNOP rightHandSide_type2 SEMICOLON
+<assignmentStmt_type2>-> <leftHandSide_listVar> ASSIGNOP <rightHandSide_type2> SEMICOLON	leftHandSide_singleVar ID
+<leftHandSide_singleVar> -> ID	leftHandSide_listVar SQO var_list SQC
+<leftHandSide_listVar> -> SQO <var_list> SQC	rightHandSide_type1 arithmeticExpression
+<rightHandSide_type1> -> <arithmeticExpression>	rightHandSide_type1 sizeExpression
+<rightHandSide_type1> -> <sizeExpression>	rightHandSide_type1 funCallStmt
+<rightHandSide_type1> -> <funCallStmt>	rightHandSide_type2 sizeExpression
+<rightHandSide_type2> -> <sizeExpression>	rightHandSide_type2 funCallStmt
+<rightHandSide_type2> -> <funCallStmt>	sizeExpression SIZE ID
+<sizeExpression> -> SIZE ID 	ifStmt IF OP booleanExpression CL stmt otherStmts B
+<ifStmt> -> IF OP <booleanExpression> CL <stmt><otherStmts> <B>	B ELSE stmt otherStmts ENDIF SEMICOLON
+<B> -> ELSE <stmt><otherStmts> ENDIF SEMICOLON 	B ENDIF SEMICOLON
+<B> ->  ENDIF SEMICOLON	otherStmts stmt otherStmts
+<otherStmts>-> <stmt><otherStmts>	otherStmts EPSILON
+<otherStmts>-> ep	ioStmt C OP ID CL SEMICOLON
+<ioStmt>-> PRINT OP ID CL SEMICOLON	C PRINT
+<ioStmt>-> READ OP ID CL SEMICOLON	C READ
+<funCallStmt>-> FUNID OP <inputParameterList> CL	funCallStmt FUNID OP inputParameterList CL
+<inputParameterList> -> <var> <listVar>	inputParameterList var listVar
+<inputParameterList> -> ep	inputParameterList EPSILON
+<listVar> -> COMMA <inputParameterList>	listVar COMMA inputParameterList
+<listVar> -> ep	listVar EPSILON
+<arithmeticExpression>-> <arithmeticTerm> <D>	arithmeticExpression arithmeticTerm D
+<D> -> <operator_lowPrecedence> <arithmeticExpression>	D operator_lowPrecedence arithmeticExpression
+<D> -> ep	D EPSILON
+<arithmeticTerm>-> <factor> <E>	arithmeticTerm factor E
+<E> -> <operator_highPrecedence> <arithmeticTerm>	E operator_highPrecdence arithmeticTerm
+<E> -> ep	E EPSILON
+<factor> -> OP <arithmeticExpression> CL	factor OP arithmeticExpression CL
+<factor> -> <var>	factor var
+<operator_lowPrecedence> -> PLUS	operator_lowPrecedence PLUS
+<operator_lowPrecedence> -> MINUS	operator_lowPrecedence MINUS
+<operator_highPrecedence> -> MUL	operator_highPrecdence MUL
+<operator_highPrecedence> -> DIV	operator_highPrecdence DIV
+<booleanExpression>-> OP <booleanExpression> CL <logicalOp> OP <booleanExpression> CL	booleanExpression OP booleanExpression CL logicalOp OP booleanExpression CL
+<booleanExpression>-> <constrainedVars> <relationalOp> <constrainedVars>	booleanExpression constrainedVars relationalOp constrainedVars
+<constrainedVars> -> ID	constrainedVars ID
+<constrainedVars> ->NUM	constrainedVars NUM
+<constrainedVars> -> RNUM	constrainedVars RNUM
+<var>-> ID <H>	var ID
+<var>-> NUM	var NUM
+<var>-> RNUM	var RNUM
+<var>-> STR	var matrixElement
+<var>-> <matrix>	var STR
+<H>-> SQO NUM COMMA NUM SQC	var matrix
+<H>-> ep	matrix SQO rows SQC
+<matrix>->SQO <rows> SQC	rows row F
+<rows> -> <row> <F>	F SEMICOLON rows
+<F> -> SEMICOLON <rows>	F EPSILON
+<F> -> ep	row NUM G
+<row> -> NUM <remainingColElements>	G remainingColElements
+<remainingColElements> -> COMMA NUM <remainingColElements>	G EPSILON
+<remainingColElements> -> ep	remainingColElements COMMA NUM remainingColElements
+<logicalOp>-> AND	remainingColElements EPSILON
+<logicalOp>-> OR	matrixElement ID SQO NUM COMMA NUM SQC
+<relationalOp>-> LT	logicalOp AND
+<relationalOp>-> LE	logicalOp OR
+<relationalOp>-> EQ	relationalOp LT
+<relationalOp>-> GT	relationalOp LE
+<relationalOp>-> GE	relationalOp EQ
+<relationalOp>-> NE	relationalOp GT
+<booleanExpression>-> NOT OP <booleanExpression> CL	relationalOp GE
+	relationalOp NE
+	booleanExpression NOT OP booleanExpression CL
+	CL

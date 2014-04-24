@@ -1,0 +1,22 @@
+#include<stdio.h>
+int main(){
+	FILE* fp=fopen("mergeGrammar.txt","w");
+	FILE* fp1=fopen("grammarrules.txt","r");
+	FILE* fp2=fopen("grammar.txt","r");
+	/*int t; char c='0';
+	while(!feof(fp1)){
+		char line [ 200 ]; 
+		while((c=fgetc(fp1))!='\n')
+			fprintf(fp,"%c",c);
+		fprintf(fp,"\n");
+		do{fscanf(fp2,"%d%c",&t,&c);
+		fprintf(fp,"<%d>",t);}
+		while(c!='\n');
+		fprintf(fp,"\n");
+	//	int i; scanf("%d",&i);
+	}
+*/
+fclose ( fp);
+fclose ( fp1);
+fclose ( fp2);	
+}

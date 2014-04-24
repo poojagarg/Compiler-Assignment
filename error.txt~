@@ -1,0 +1,36 @@
+_main[]
+	int a,b;
+	a = 3;
+	b = 5;
+	function [int sum, int diff, int prod]= _calculator[int c, int d]
+		sum = c + d;
+		diff = c*d;
+		diff = c - d;
+	end;
+	
+	#computes the sum of squares of a, b and c 
+	function [int x] = _sumOfSquares[int a, int b, int c] 
+	    int p,q,r; 
+
+	    function [int s] = _square[int u] 
+	         s = u*u; 
+	    end; 
+	    #function _square end here
+
+	    function [real u] = _anotherFunction[int d]
+	    	u = p + q + r ;
+            end;
+	    # function _anotherFunction ends here
+
+	    p = _square(a); 
+	    q = _square(b); 
+            r = _square(c); 
+	    x = _anotherFunction(2,3); 
+	end;
+	#function _sumOfSquares ends here
+	int  p;
+	real d;
+	[s, d, p] = _calculator(23,10.23);
+	p = _sumOfSquares(1,2,3);
+	d = _sumOfSquares(4,5,6);
+end;

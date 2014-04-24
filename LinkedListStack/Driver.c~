@@ -1,0 +1,21 @@
+#ifndef _LINKEDLISTSTACK_H
+	#include"linkedlistStack.h"
+#endif
+#ifndef _STDIO_H
+	#include<stdio.h>
+#endif
+linkedlistStack* createSymbolStack();
+void pushSymbolStack(int value,linkedlistStack* s);
+int popSymbolStack(linkedlistStack* s);
+void deleteSymbolStack(linkedlistStack* s);
+int main(){
+	linkedlistStack* s=createSymbolStack();
+	int i,size=5;
+	for( i=0; i<size; i++)
+		pushSymbolStack(i,s);
+	for( i=0; i<size; i++)
+		printf("%d",popSymbolStack(s));
+	deleteSymbolStack(s);
+	return 0;
+}
+
